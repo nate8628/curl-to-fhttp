@@ -304,7 +304,7 @@ function curlToGo(curl) {
 			go += '"'+goExpandEnv(name)+'": {"'+goExpandEnv(req.headers[name])+'"},\n';
 		}
 
-		gp += '}/n'
+		go += '}/n'
 
 		// execute request
 		go += "\nresp, err := "+clientName+".Do(req)\n";
