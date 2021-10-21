@@ -251,7 +251,7 @@ function curlToGo(curl) {
 						go += "params := url.Values{}\n"
 						var params = new URLSearchParams(req.data.ascii);
 						params.forEach(function(fvalue, fkey){
-							go += 'params.Add("' + fkey + '", `' + fvalue + '`)\n' 
+							go += 'params.Add("' + fkey + '", `' + fvalue + '`)\n'
 						});
 						go += defaultPayloadVar+ ' := strings.NewReader(params.Encode())\n\n'
 				}else {
@@ -298,9 +298,13 @@ function curlToGo(curl) {
 		}
 
 		// set headers
+		go += 'var httpHeader = http.Header{\n'
+
 		for (var name in req.headers) {
-			go += 'req.Header.Set('+goExpandEnv(name)+', '+goExpandEnv(req.headers[name])+')\n';
+			go += '"'+goExpandEnv(name)+'": {"'+goExpandEnv(req.headers[name])+'"},\n';
 		}
+
+		gp += '}/n'
 
 		// execute request
 		go += "\nresp, err := "+clientName+".Do(req)\n";
