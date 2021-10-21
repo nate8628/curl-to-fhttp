@@ -1,4 +1,6 @@
 curl-to-Go
+This is a FORK of curl-to-go by mholt; edited for requests using flyents [fhttp](https://github.com/useflyent/fhttp) fork of net/http
+
 ===========
 
 curl-to-Go is a tool to instantly convert [curl](http://curl.haxx.se) commands to Go code in the browser. It does *not* guarantee high-fidelity conversions, but it's good enough for most API docs that have curl samples.
