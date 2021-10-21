@@ -298,13 +298,25 @@ function curlToGo(curl) {
 		}
 
 		// set headers
-		go += 'var httpHeader = http.Header{\n'
+		go += "var httpHeader = http.Header{\n";
 
+		//headers
 		for (var name in req.headers) {
-			go += '"'+goExpandEnv(name)+'": {"'+goExpandEnv(req.headers[name])+'"},\n';
+			go += goExpandEnv(name)+ ': {'+goExpandEnv(req.headers[name])+'},\n';
 		}
 
-		go += '}/n'
+		//Header order key
+		go += 'http.HeaderOrderKey: {\n'
+
+		for (var name in req.headers) {
+			go += goExpandEnv(name) + ',\n';
+		}
+
+		go += "},\n"
+
+		go += '}\n';
+
+		go += '\nreq.header = httpHeader\n'
 
 		// execute request
 		go += "\nresp, err := "+clientName+".Do(req)\n";
