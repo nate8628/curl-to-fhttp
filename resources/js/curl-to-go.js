@@ -316,7 +316,7 @@ function curlToGo(curl) {
 
 		go += '}\n';
 
-		go += '\nreq.header = httpHeader\n'
+		go += '\nreq.Header = httpHeader\n'
 
 		// execute request
 		go += "\nresp, err := "+clientName+".Do(req)\n";
