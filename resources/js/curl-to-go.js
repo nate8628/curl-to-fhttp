@@ -303,7 +303,17 @@ function curlToGo(curl) {
 		//headers
 		for (var name in req.headers) {
 			if (name.ToLowerCase() != "cookie") {
-				go += goExpandEnv(name.toLowerCase())+ ': {'+goExpandEnv(req.headers[name])+'},\n';
+				value = req.headers[name]
+				
+				if(name.ToLowerCase() == "user-agent"){
+					value = "hi.UserAgent"	
+				} else if (name.ToLowerCase() == "sec-ch-ua") {
+					value = "hi.UaHint"	
+				} else if (name.ToLowerCase() == "sec-ch-ua-platform") {
+					value = 'hi.Platform"	
+				}
+				
+				go += goExpandEnv(name.toLowerCase())+ ': {'+goExpandEnv(value)+'},\n';
 			}
 		}
 
