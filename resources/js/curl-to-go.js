@@ -302,14 +302,14 @@ function curlToGo(curl) {
 
 		//headers
 		for (var name in req.headers) {
-			if (name.ToLowerCase() != "cookie") {
+			if (name.toLowerCase() != "cookie") {
 				value = req.headers[name]
 				
-				if(name.ToLowerCase() == "user-agent"){
+				if(name.toLowerCase() == "user-agent"){
 					value = "hi.UserAgent"	
-				} else if (name.ToLowerCase() == "sec-ch-ua") {
+				} else if (name.toLowerCase() == "sec-ch-ua") {
 					value = "hi.UaHint"	
-				} else if (name.ToLowerCase() == "sec-ch-ua-platform") {
+				} else if (name.toLowerCase() == "sec-ch-ua-platform") {
 					value = "hi.Platform"	
 				}
 				
@@ -321,7 +321,7 @@ function curlToGo(curl) {
 		go += 'http.HeaderOrderKey: {\n'
 
 		for (var name in req.headers) {
-			if (name.ToLowerCase() != "cookie") {
+			if (name.toLowerCase() != "cookie") {
 				go += goExpandEnv(name.toLowerCase()) + ',\n';
 			}
 		}
