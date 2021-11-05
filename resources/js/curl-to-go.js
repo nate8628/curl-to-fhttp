@@ -310,7 +310,7 @@ function curlToGo(curl) {
 				} else if (name.ToLowerCase() == "sec-ch-ua") {
 					value = "hi.UaHint"	
 				} else if (name.ToLowerCase() == "sec-ch-ua-platform") {
-					value = 'hi.Platform"	
+					value = "hi.Platform"	
 				}
 				
 				go += goExpandEnv(name.toLowerCase())+ ': {'+goExpandEnv(value)+'},\n';
