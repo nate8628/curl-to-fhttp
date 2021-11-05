@@ -306,14 +306,19 @@ function curlToGo(curl) {
 				value = req.headers[name]
 				
 				if(name.toLowerCase() == "user-agent"){
-					value = "hi.UserAgent"	
+					value = "hi.UserAgent"
+					go += goExpandEnv(name.toLowerCase())+ ': {'+value+'},\n';
 				} else if (name.toLowerCase() == "sec-ch-ua") {
 					value = "hi.UaHint"	
+					go += goExpandEnv(name.toLowerCase())+ ': {'+value+'},\n';
 				} else if (name.toLowerCase() == "sec-ch-ua-platform") {
-					value = "hi.Platform"	
+					value = "hi.Platform"
+					go += goExpandEnv(name.toLowerCase())+ ': {'+value+'},\n';
+				} else {
+					go += goExpandEnv(name.toLowerCase())+ ': {'+goExpandEnv(value)+'},\n';
 				}
 				
-				go += goExpandEnv(name.toLowerCase())+ ': {'+goExpandEnv(value)+'},\n';
+				
 			}
 		}
 
