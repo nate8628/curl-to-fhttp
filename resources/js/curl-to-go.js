@@ -302,14 +302,14 @@ function curlToGo(curl) {
 
 		//headers
 		for (var name in req.headers) {
-			go += goExpandEnv(name)+ ': {'+goExpandEnv(req.headers[name])+'},\n';
+			go += goExpandEnv(name.toLowerCase())+ ': {'+goExpandEnv(req.headers[name])+'},\n';
 		}
 
 		//Header order key
 		go += 'http.HeaderOrderKey: {\n'
 
 		for (var name in req.headers) {
-			go += goExpandEnv(name) + ',\n';
+			go += goExpandEnv(name.toLowerCase()) + ',\n';
 		}
 
 		go += "},\n"
