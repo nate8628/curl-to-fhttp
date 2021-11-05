@@ -302,15 +302,21 @@ function curlToGo(curl) {
 
 		//headers
 		for (var name in req.headers) {
-			go += goExpandEnv(name.toLowerCase())+ ': {'+goExpandEnv(req.headers[name])+'},\n';
+			if (name.ToLowerCase() != "cookie") {
+				go += goExpandEnv(name.toLowerCase())+ ': {'+goExpandEnv(req.headers[name])+'},\n';
+			}
 		}
 
 		//Header order key
 		go += 'http.HeaderOrderKey: {\n'
 
 		for (var name in req.headers) {
-			go += goExpandEnv(name.toLowerCase()) + ',\n';
+			if (name.ToLowerCase() != "cookie") {
+				go += goExpandEnv(name.toLowerCase()) + ',\n';
+			}
 		}
+		
+		go += goExpandEnv('cookie') + ',\n'
 
 		go += "},\n"
 
